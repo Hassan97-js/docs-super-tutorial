@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom";
-import { createContact, updateContact } from "../contacts";
+import { createContact, updateContact, deleteContact } from "../contacts";
 
 const createContactAction = async () => {
   const contact = await createContact();
@@ -15,4 +15,14 @@ const updateContactAction = async ({ request, params }) => {
   return redirect(`/contacts/${params.id}`);
 };
 
-export { createContactAction, updateContactAction };
+const deleteContactAction = async ({ params }) => {
+  // throw new Error("oh dang!");
+
+  const isDeleted = await deleteContact(params.id);
+
+  if (isDeleted) {
+    return redirect("/");
+  }
+};
+
+export { createContactAction, updateContactAction, deleteContactAction };

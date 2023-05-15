@@ -1,7 +1,10 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useNavigate } from "react-router-dom";
 
 const EditContact = () => {
   const { contact } = useLoaderData();
+  const navigate = useNavigate();
+
+  const handleNavigateBack = () => navigate(-1);
 
   return (
     <Form method="post" id="contact-form">
@@ -52,7 +55,9 @@ const EditContact = () => {
 
       <p>
         <button type="submit">Save</button>
-        <button type="button">Cancel</button>
+        <button type="button" onClick={handleNavigateBack}>
+          Cancel
+        </button>
       </p>
     </Form>
   );

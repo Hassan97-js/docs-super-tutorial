@@ -1,8 +1,14 @@
-import { NavLink, Outlet, Form, useLoaderData } from "react-router-dom";
+import {
+  NavLink,
+  Outlet,
+  Form,
+  useLoaderData,
+  useNavigation
+} from "react-router-dom";
 
 const Root = () => {
   const { contacts } = useLoaderData();
-  console.log(contacts);
+  const navigation = useNavigation();
 
   return (
     <>
@@ -58,7 +64,7 @@ const Root = () => {
         </nav>
       </div>
 
-      <div id="detail">
+      <div id="detail" className={navigation.state === "loading" ? "loading" : ""}>
         <Outlet />
       </div>
     </>

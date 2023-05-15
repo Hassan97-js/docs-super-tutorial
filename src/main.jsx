@@ -5,9 +5,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import routesData from "./routes";
 
-const { Root, ErrorPage, Contact, EditContact } = routesData.components;
+const { Root, IndexRoute, ErrorPage, Contact, EditContact } = routesData.components;
 const { getContactLoader, getContactsLoader } = routesData.loaders;
-const { createContactAction, updateContactAction } = routesData.actions;
+const { createContactAction, updateContactAction, deleteContactAction } =
+  routesData.actions;
 
 import "./index.css";
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     action: createContactAction,
     children: [
       {
+        index: true,
+        element: <IndexRoute />
+      },
+      {
         path: "contacts/:id",
         element: <Contact />,
         loader: getContactLoader
@@ -29,12 +34,22 @@ const router = createBrowserRouter([
         element: <EditContact />,
         loader: getContactLoader,
         action: updateContactAction
+      },
+      {
+        path: "/contacts/:id/destroy",
+        action: deleteContactAction,
+        errorElement: <div>Oops! There was an error.</div>
+      },
+      {
+        path: "*",
+        element: <ErrorPage />
       }
     ]
   }
 ]);
 
 const root = createRoot(document.getElementById("root"));
+
 root.render(
   <StrictMode>
     <RouterProvider router={router} fallbackElement={<h1>Loading...</h1>} />

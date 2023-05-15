@@ -1,7 +1,9 @@
 import { getContacts, getContact } from "../contacts.js";
 
-const getContactsLoader = async () => {
-  const contacts = await getContacts();
+const getContactsLoader = async ({ request }) => {
+  const url = new URL(request.url);
+  const q = url.searchParams.get("q");
+  const contacts = await getContacts(q);
   return { contacts };
 };
 
