@@ -8,7 +8,8 @@ import { getContactLoader, getContactsLoader } from "./loaders";
 import {
   createContactAction,
   updateContactAction,
-  deleteContactAction
+  deleteContactAction,
+  addToFavouriteAction
 } from "./actions";
 
 const routesData = {
@@ -20,7 +21,8 @@ const routesData = {
   actions: {
     createContactAction,
     updateContactAction,
-    deleteContactAction
+    deleteContactAction,
+    addToFavouriteAction
   }
 };
 

@@ -1,14 +1,33 @@
+import { useEffect } from "react";
+
 import {
   NavLink,
   Outlet,
   Form,
   useLoaderData,
-  useNavigation
+  useNavigation,
+  useSubmit
 } from "react-router-dom";
 
 const Root = () => {
-  const { contacts } = useLoaderData();
+  const { contacts, q } = useLoaderData();
   const navigation = useNavigation();
+  const submit = useSubmit();
+
+  useEffect(() => {
+    document.getElementById("q").value = q;
+  }, [q]);
+
+  const locationExist = !!navigation.location;
+  const urlSearch = locationExist && new URLSearchParams(navigation.location.search);
+  const isUserSearching = locationExist && urlSearch.has("q");
+
+  const handleSubmitSearchQuery = (event) => {
+    const isFirstSearch = q == null;
+    submit(event.currentTarget.form, {
+      replace: !isFirstSearch
+    });
+  };
 
   return (
     <>
@@ -19,13 +38,16 @@ const Root = () => {
           <Form id="search-form" role="search">
             <input
               id="q"
+              className={isUserSearching ? "loading" : ""}
               aria-label="Search contacts"
               placeholder="Search"
               type="search"
               name="q"
+              defaultValue={q}
+              onChange={handleSubmitSearchQuery}
             />
 
-            <div id="search-spinner" aria-hidden hidden={true} />
+            <div id="search-spinner" aria-hidden hidden={!isUserSearching} />
             <div className="sr-only" aria-live="polite"></div>
           </Form>
 

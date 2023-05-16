@@ -25,4 +25,16 @@ const deleteContactAction = async ({ params }) => {
   }
 };
 
-export { createContactAction, updateContactAction, deleteContactAction };
+const addToFavouriteAction = async ({ request, params }) => {
+  const formData = await request.formData();
+  return updateContact(params.id, {
+    favorite: formData.get("favorite") === "true"
+  });
+};
+
+export {
+  createContactAction,
+  updateContactAction,
+  deleteContactAction,
+  addToFavouriteAction
+};

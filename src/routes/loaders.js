@@ -4,7 +4,7 @@ const getContactsLoader = async ({ request }) => {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
   const contacts = await getContacts(q);
-  return { contacts };
+  return { contacts, q };
 };
 
 const getContactLoader = async ({ params }) => {

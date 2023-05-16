@@ -7,8 +7,12 @@ import routesData from "./routes";
 
 const { Root, IndexRoute, ErrorPage, Contact, EditContact } = routesData.components;
 const { getContactLoader, getContactsLoader } = routesData.loaders;
-const { createContactAction, updateContactAction, deleteContactAction } =
-  routesData.actions;
+const {
+  createContactAction,
+  updateContactAction,
+  deleteContactAction,
+  addToFavouriteAction
+} = routesData.actions;
 
 import "./index.css";
 
@@ -27,7 +31,8 @@ const router = createBrowserRouter([
       {
         path: "contacts/:id",
         element: <Contact />,
-        loader: getContactLoader
+        loader: getContactLoader,
+        action: addToFavouriteAction
       },
       {
         path: "contacts/:id/edit",

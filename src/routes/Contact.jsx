@@ -1,31 +1,24 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useFetcher } from "react-router-dom";
 
 const Favorite = ({ contact }) => {
+  const fetcher = useFetcher();
+
   let favorite = contact.favorite;
 
   return (
-    <Form method="post">
+    <fetcher.Form method="post">
       <button
         name="favorite"
         value={favorite ? "false" : "true"}
         aria-label={favorite ? "Remove from favorites" : "Add to favorites"}>
         {favorite ? "★" : "☆"}
       </button>
-    </Form>
+    </fetcher.Form>
   );
 };
 
 const Contact = () => {
   const { contact } = useLoaderData();
-
-  // const contact = {
-  //   first: "Hassan",
-  //   last: "Dev",
-  //   avatar: "https://placekitten.com/g/200/200",
-  //   twitter: "@_developerjs",
-  //   notes: "some notes about this contact and its attachments",
-  //   favorite: true
-  // };
 
   return (
     <div id="contact">

@@ -1,3 +1,3 @@
-# TODO: Synchronizing URLs to Form State
+# TODO: Optimistic UI
 
-<https://reactrouter.com/en/main/start/tutorial#synchronizing-urls-to-form-state>
+<https://reactrouter.com/en/main/start/tutorial#optimistic-ui>
