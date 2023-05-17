@@ -5,7 +5,6 @@ import sortBy from "sort-by";
 export async function getContacts(query) {
   await fakeNetwork(`getContacts:${query}`);
   let contacts = await localforage.getItem("contacts");
-
   if (!contacts) contacts = [];
   if (query) {
     contacts = matchSorter(contacts, query, { keys: ["first", "last"] });
@@ -75,3 +74,35 @@ async function fakeNetwork(key) {
     setTimeout(res, Math.random() * 800);
   });
 }
+
+/* 
+  {
+        ...createContact(),
+        first: "Hassan",
+        last: "Dev",
+        avatar: "https://placekitten.com/g/200/200",
+        twitter: "@hassan",
+        notes: "Some notes",
+        favorite: true
+      },
+      {
+        ...createContact(),
+        first: "Tarik",
+        last: "Dark",
+        avatar: "https://placekitten.com/g/200/200",
+        twitter: "@tarik",
+        notes: "Some notes",
+        favorite: false
+      },
+      {
+        ...createContact(),
+        first: "Farik",
+        last: "Nisharry",
+        avatar:
+          "https://images.generated.photos/N2CcsCSW8zfqYHVmlhU_JXjaBKM0xwxUUNZMGK_BTEI/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/OTcxMTAzLmpwZw.jpg",
+        twitter: "@faris",
+        notes: "Some notes",
+        favorite: false
+      } 
+      
+*/

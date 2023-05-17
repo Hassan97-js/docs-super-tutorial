@@ -1,3 +1,3 @@
-# TODO: Optimistic UI
+# TODO: Done
 
-<https://reactrouter.com/en/main/start/tutorial#optimistic-ui>
+<https://reactrouter.com/en/main/start/tutorial>

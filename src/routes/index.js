@@ -9,7 +9,7 @@ import {
   createContactAction,
   updateContactAction,
   deleteContactAction,
-  addToFavouriteAction
+  addToFavoriteAction
 } from "./actions";
 
 const routesData = {
@@ -22,7 +22,7 @@ const routesData = {
     createContactAction,
     updateContactAction,
     deleteContactAction,
-    addToFavouriteAction
+    addToFavoriteAction
   }
 };
 

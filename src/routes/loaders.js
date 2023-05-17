@@ -9,6 +9,12 @@ const getContactsLoader = async ({ request }) => {
 
 const getContactLoader = async ({ params }) => {
   const contact = await getContact(params.id);
+  if (!contact) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found"
+    });
+  }
   return { contact };
 };
 
